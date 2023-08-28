@@ -35,10 +35,10 @@ import axios from 'axios';
       }
       this.error = "";
 
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=bf23ff8d54bb4889534894f131503597`)
+      /* axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=bf23ff8d54bb4889534894f131503597`)
         .then(res => {
           this.info = res.data
-        })
+        }) */
     }
   }
 }
@@ -46,17 +46,17 @@ import axios from 'axios';
 
 <template>
   <div class="service">
-    <h1>Сервис прогноза погоды</h1>
-    <p>Узнай погоду в {{ city == "" ? "своем городе" : cityName }}</p>
-    <input type="text" v-model="city" placeholder="Введите название города">
-    <button type="button" v-if="city != ''" v-on:click="getWeather()">Узнать погоду</button>
-    <button disabled type="button" v-else>Нужно ввести название</button>
-    <p class="error">{{ error }}</p>
-    <ul v-if="info != null">
-      <li>{{ showTemp }}</li>
-      <li>{{ showFeelsLike }}</li>
-      <li>{{ showMinTemp }}</li>
-      <li>{{ showMaxTemp }}</li>
+    <h1 class="service__title">Сервис прогноза погоды</h1>
+    <p class="service__text">Узнай погоду в {{ city == "" ? "своем городе" : cityName }}</p>
+    <input class="service__input" type="text" v-model="city" placeholder="Введите название города">
+    <button class="service__button" type="button" v-if="city != ''" v-on:click="getWeather()">Узнать погоду</button>
+    <button class="service__button" disabled type="button" v-else>Нужно ввести название</button>
+    <p class="service__text error">{{ error }}</p>
+    <ul class="service__list" v-if="info != null">
+      <li class="service__list-item">{{ showTemp }}</li>
+      <li class="service__list-item">{{ showFeelsLike }}</li>
+      <li class="service__list-item">{{ showMinTemp }}</li>
+      <li class="service__list-item">{{ showMaxTemp }}</li>
     </ul>
   </div>
 </template>
@@ -66,14 +66,14 @@ import axios from 'axios';
   .service {
     color: white;
   }
-  .service h1{
+  .service__title{
     text-align: center;
   }
-  .service p {
+  .service__text {
     margin-top: 15px;
     text-align: center;
   }
-  .service input{
+  .service__input{
     font-size: 16px;
     margin: 0 auto; 
     color: white;
@@ -87,17 +87,17 @@ import axios from 'axios';
     border-bottom: 2px solid rgb(255, 255, 255);
   }
 
-  .service input:hover {
+  .service__input:hover {
     cursor: pointer;
     border-bottom-color: rgb(235, 255, 122);
   }
 
-  .service input:focus {
+  .service__input:focus {
     cursor: auto;
     border-bottom-color: rgb(235, 255, 122);
   }
 
-  .service button {
+  .service__button {
     display: block;
     margin: 20px auto 0;
     padding: 10px 12px;
@@ -110,12 +110,12 @@ import axios from 'axios';
     transition: transform ease-in 0.8s;
   }
 
-  .service button:hover {
+  .service__button:hover {
     cursor: pointer;
     transform: scale(1.2) translateY(-3px);
   }
 
-  .service button:disabled {
+  .service__button:disabled {
     background-color: rgba(103, 109, 70, 0.751);
     cursor: not-allowed;
     transform: none;
@@ -125,6 +125,19 @@ import axios from 'axios';
     color: red;
     font-size: 16px;
     font-weight: 700;
+  }
+
+  .service__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+  }
+
+  .service__list-item{
+    font-size: 16px;
+    line-height: 1.5;
   }
   
 </style>
