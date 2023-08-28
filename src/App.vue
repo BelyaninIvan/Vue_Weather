@@ -1,13 +1,44 @@
 <script>
+
+import axios from 'axios';
+
   export default {
     data() {
       return {
-        city: ""
+        city: "",
+        error: "",
+        info: null
     }
   },
   computed: {
     cityName() {
       return "«" + this.city + "»"
+    },
+    showTemp() {
+      return "Температура: " + this.info.main.temp
+    },
+    showFeelsLike() {
+      return "Ощущается, как: " + this.info.main.feels_like
+    },
+    showMinTemp() {
+      return "Минимальная температура: " + this.info.main.temp_min
+    },
+    showMaxTemp() {
+      return "Максимальная температура: " + this.info.main.temp_max
+    }
+  },
+  methods: {
+    getWeather() {
+      if(this.city.trim().length < 2){
+        this.error = "Некорректное название города";
+        return false
+      }
+      this.error = "";
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=bf23ff8d54bb4889534894f131503597`)
+        .then(res => {
+          this.info = res.data
+        })
     }
   }
 }
@@ -18,8 +49,15 @@
     <h1>Сервис прогноза погоды</h1>
     <p>Узнай погоду в {{ city == "" ? "своем городе" : cityName }}</p>
     <input type="text" v-model="city" placeholder="Введите название города">
-    <button type="button" v-if="city != ''">Узнать погоду</button>
+    <button type="button" v-if="city != ''" v-on:click="getWeather()">Узнать погоду</button>
     <button disabled type="button" v-else>Нужно ввести название</button>
+    <p class="error">{{ error }}</p>
+    <ul v-if="info != null">
+      <li>{{ showTemp }}</li>
+      <li>{{ showFeelsLike }}</li>
+      <li>{{ showMinTemp }}</li>
+      <li>{{ showMaxTemp }}</li>
+    </ul>
   </div>
 </template>
 
@@ -83,5 +121,10 @@
     transform: none;
   }
 
+  .error{
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+  }
   
 </style>
