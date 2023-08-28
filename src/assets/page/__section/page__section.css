@@ -1,0 +1,8 @@
+.page__section {
+    max-width: 450px;
+    width: 100%;
+    min-height: 300px;
+    border-radius: 40px;
+    background-color: rgba(128, 128, 128, 0.397);
+    padding: 15px;
+}

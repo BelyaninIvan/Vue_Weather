@@ -1,0 +1,11 @@
+.page{
+    background: rgb(181,255,0);
+    background: linear-gradient(267deg, rgba(181,255,0,0.6727941176470589) 0%, rgba(0,212,255,0.7148109243697479) 100%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
