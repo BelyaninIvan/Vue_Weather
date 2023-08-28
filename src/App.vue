@@ -1,17 +1,25 @@
 <script>
   export default {
     data() {
-      
+      return {
+        city: ""
+    }
+  },
+  computed: {
+    cityName() {
+      return "«" + this.city + "»"
     }
   }
+}
 </script>
 
 <template>
   <div class="service">
     <h1>Сервис прогноза погоды</h1>
-    <p>Узнай погоду в своем городе</p>
-    <input type="text" name="" id="">
-    <button type="button">Узнать погоду</button>
+    <p>Узнай погоду в {{ city == "" ? "своем городе" : cityName }}</p>
+    <input type="text" v-model="city" placeholder="Введите название города">
+    <button type="button" v-if="city != ''">Узнать погоду</button>
+    <button disabled type="button" v-else>Нужно ввести название</button>
   </div>
 </template>
 
@@ -68,4 +76,12 @@
     cursor: pointer;
     transform: scale(1.2) translateY(-3px);
   }
+
+  .service button:disabled {
+    background-color: rgba(103, 109, 70, 0.751);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  
 </style>
