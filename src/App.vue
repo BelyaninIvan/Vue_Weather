@@ -1,5 +1,4 @@
 <script>
-
 import axios from 'axios';
 
   export default {
@@ -66,25 +65,30 @@ import axios from 'axios';
   .service {
     color: white;
   }
-  .service__title{
+  .service__title {
     text-align: center;
   }
   .service__text {
     margin-top: 15px;
     text-align: center;
   }
-  .service__input{
+  .service__input {
     font-size: 16px;
     margin: 0 auto; 
+    padding: 10px;
     color: white;
     margin-top: 20px;
-    max-width: 150px;
+    max-width: 300px;
     display: block;
     text-decoration: none;
     border: 0;
-    background-color: transparent;
+    background-color: rgba(191, 203, 127, 0.751);
+    border-radius: 10px;
     outline: none;
-    border-bottom: 2px solid rgb(255, 255, 255);
+  }
+
+  .service__input::placeholder {
+    color: white;
   }
 
   .service__input:hover {
@@ -121,7 +125,7 @@ import axios from 'axios';
     transform: none;
   }
 
-  .error{
+  .error {
     color: red;
     font-size: 16px;
     font-weight: 700;
@@ -135,7 +139,7 @@ import axios from 'axios';
     list-style-type: none;
   }
 
-  .service__list-item{
+  .service__list-item {
     font-size: 16px;
     line-height: 1.5;
   }
