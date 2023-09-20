@@ -34,10 +34,10 @@ import axios from 'axios';
       }
       this.error = "";
 
-      /* axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=bf23ff8d54bb4889534894f131503597`)
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=ba15919bb3e4317e2e4663caa8ef6ee2`)
         .then(res => {
           this.info = res.data
-        }) */
+        })
     }
   }
 }
